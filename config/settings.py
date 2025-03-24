@@ -24,6 +24,9 @@ SENDER_PHONE = os.getenv("SENDER_PHONE")
 # Email utilizado para receber atualizações sobre o status do template
 SENDER_EMAIL = os.getenv("SENDER_EMAIL")
 
+# Canal de comunicação utilizado para envio de mensagens
+CHANNEL = os.getenv("CHANNEL")
+
 # Cabeçalhos padrão para requisições à API Zenvia
 HEADERS = {
     "Content-Type": "application/json",
