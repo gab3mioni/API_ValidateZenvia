@@ -9,7 +9,7 @@ do template e a comunicação com o serviço da Zenvia.
 from flask import Blueprint, request, jsonify
 from services.zenvia_service import enviar_template
 from utils.helpers import atualizar_exemplos
-from config.settings import SENDER_PHONE, SENDER_EMAIL
+from config.settings import SENDER_PHONE, SENDER_EMAIL, CHANNEL
 
 # Blueprint para rotas de templates
 template_routes = Blueprint("template_routes", __name__)
@@ -45,7 +45,7 @@ def enviar_template_route():
             }
         },
         "category": "UTILITY",
-        "channel": "WHATSAPP",
+        "channel": CHANNEL,
         "name": data["name"],
         "locale": "pt_BR",
         "senderId": SENDER_PHONE,
