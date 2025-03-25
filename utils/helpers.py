@@ -44,7 +44,7 @@ def atualizar_exemplos(data):
     exemplos = data.get("examples", {})
     
     for var in variaveis:
-        exemplos.setdefault(var, "Exemplo")
+        exemplos.setdefault(var, "Mario")
     
     data["examples"] = exemplos
     return data
