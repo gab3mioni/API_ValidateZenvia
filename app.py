@@ -13,7 +13,6 @@ A aplicação fornece endpoints para:
 
 from flask import Flask
 from routes.template_routes import template_routes
-from routes.export_routes import export_routes
 from config.database import init_db
 from services.zenvia_service import init_service
 
@@ -28,7 +27,6 @@ init_service(app)
 
 # Registra os blueprints de rotas
 app.register_blueprint(template_routes)
-app.register_blueprint(export_routes)
 
 if __name__ == "__main__":
     """
