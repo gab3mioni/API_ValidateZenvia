@@ -45,7 +45,7 @@ def enviar_template_route():
             }
         },
         "category": "UTILITY",
-        "channel": CHANNEL,
+        "channel": "WHATSAPP",
         "name": data["name"],
         "locale": "pt_BR",
         "senderId": SENDER_PHONE,
