@@ -91,8 +91,7 @@ API_ValidateZenvia/
 ├── models/                 
 │   └── template.py         # Modelo de Template
 ├── routes/                 # Rotas da API
-│   ├── export_routes.py    # Rotas para exportação CSV
-│   └── template_routes.py  # Rotas para envio de templates
+│   └── template_routes.py  # Rota para envio de templates
 ├── services/               
 │   └── zenvia_service.py   # Integração com a API Zenvia
 ├── utils/                 
@@ -127,12 +126,6 @@ Enviar template para validação
 }
 ```
 
-Exportar templates em CSV
-
-- **URL:** `/exportar-csv`
-- **Método:** GET
-- **Resposta:** Arquivo CSV contendo ID, Status e motivo da rejeição (caso exista, se for outro status, estará em branco)
-
 ## Testando a aplicação
 
 Enviando um Template para Validação
@@ -154,14 +147,3 @@ O SQLite não requer configuração adicional. Para explorar o banco de dados:
 sqlite3 instance/templates.db
 sqlite> SELECT * FROM templates;
 ```
-
-Exportando Dados
-
-Acesse `http://localhost:5000/exportar-csv` no navegador ou use curl:
-
-```bash
-curl -OJ http://localhost:5000/exportar-csv
-```
-
-Os arquivos CSV também são salvos automaticamente no diretório `csv_output` com um timestamp no nome do arquivo.
-
