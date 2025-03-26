@@ -52,6 +52,41 @@ def enviar_template_route():
         "notificationEmail": SENDER_EMAIL,
         "examples": {}
     }
+    
+    if "buttons" in data and data["buttons"]:
+        button_items = []
+        
+        for button in data["buttons"]:
+            if isinstance(button, dict) and "text" in button and "type" in button:
+                button_text = button["text"]
+                button_type = button["type"]
+                
+                button_obj = {
+                    "type": button_type,
+                    "text": button_text,
+                    "payload": button_text
+                }
+                
+                if button_type == "URL" and "url" in button:
+                    button_obj["url"] = button["url"]
+                elif button_type == "PHONE_NUMBER" and "phone_number" in button:
+                    button_obj["phoneNumber"] = button["phone_number"]
+                
+                button_items.append(button_obj)
+            else:
+                # Para compatibilidade, se o botão for apenas uma string, assume QUICK_REPLY
+                if isinstance(button, str):
+                    button_items.append({
+                        "type": "QUICK_REPLY",
+                        "text": button,
+                        "payload": button
+                    })
+        
+        if button_items:
+            template_data["components"]["buttons"] = {
+                "items": button_items,
+                "type": "MIXED"
+            }
 
     template_data = atualizar_exemplos(template_data)
     resultado, status_code, erro = enviar_template(template_data)
