@@ -51,7 +51,14 @@ def atualizar_exemplos(data):
     exemplos = data.get("examples", {})
     
     for var in variaveis:
-        exemplos.setdefault(var, "Mario")
+        if var == "nomedopaciente":
+            exemplos.setdefault(var, "Maria")
+        elif var == "nomecuidador":
+            exemplos.setdefault(var, "João")
+        elif var == "variavel":
+            exemplos.setdefault(var, "exemplo_valor")
+        else:
+            exemplos.setdefault(var, "Exemplo")
     
     data["examples"] = exemplos
     return data
