@@ -41,10 +41,24 @@ def atualizar_exemplos(data):
     """
     texto = data["components"]["body"]["text"]
     variaveis = encontrar_variaveis(texto)
+    
+    # Procurar variáveis em botões, se existirem
+    if "buttons" in data["components"]:
+        for button in data["components"]["buttons"]:
+            if "text" in button:
+                variaveis.update(encontrar_variaveis(button["text"]))
+    
     exemplos = data.get("examples", {})
     
     for var in variaveis:
-        exemplos.setdefault(var, "Mario")
+        if var == "nomedopaciente":
+            exemplos.setdefault(var, "Maria")
+        elif var == "nomecuidador":
+            exemplos.setdefault(var, "João")
+        elif var == "variavel":
+            exemplos.setdefault(var, "exemplo_valor")
+        else:
+            exemplos.setdefault(var, "Exemplo")
     
     data["examples"] = exemplos
     return data
