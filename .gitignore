@@ -6,3 +6,5 @@
 /services/__pycache__/
 /.idea/
 /instance/*.db  
+/.venv/
+/venv/
